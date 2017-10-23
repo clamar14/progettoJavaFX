@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<ScrollPane prefHeight="475.0" prefWidth="665.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ModificaAccountController">
+   <content>
+      <AnchorPane prefHeight="463.0" prefWidth="701.0" style="-fx-background-image: url(&quot;https://ak8.picdn.net/shutterstock/videos/905008/thumb/1.jpg&quot;); -fx-background-repeat: no-repeat;">
+         <children>
+            <AnchorPane layoutX="182.0" layoutY="65.0" prefHeight="327.0" prefWidth="291.0" style="-fx-background-color: #002147;" AnchorPane.leftAnchor="182.0" AnchorPane.rightAnchor="228.0">
+               <children>
+                  <GridPane layoutY="1.0" prefHeight="296.0" prefWidth="291.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="1.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="193.0" minWidth="10.0" prefWidth="177.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="140.0" minWidth="10.0" prefWidth="114.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Label alignment="CENTER" prefHeight="14.0" prefWidth="198.0" text="Nome" textFill="#9d4040">
+                           <font>
+                              <Font name="AR DESTINE" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="208.0" text="Cognome" textFill="#9d4040" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="AR DESTINE" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="196.0" text="Password" textFill="#9d4040" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="AR DESTINE" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="TOP_CENTER" prefHeight="17.0" prefWidth="172.0" text="Sesso" textFill="#9d4040" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="AR DESTINE" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="178.0" text="Data di nascita (dd/mm/yyyy)" textFill="#9d4040" GridPane.rowIndex="4">
+                           <font>
+                              <Font name="AR DESTINE" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="191.0" text="Altezza (cm)" textFill="#9d4040" GridPane.rowIndex="5">
+                           <font>
+                              <Font name="AR DESTINE" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="194.0" text="Peso (kg)" textFill="#9d4040" GridPane.rowIndex="6">
+                           <font>
+                              <Font name="AR DESTINE" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="190.0" text="Livello di attività" textFill="#9d4040" GridPane.rowIndex="7">
+                           <font>
+                              <Font name="AR DESTINE" size="12.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="nome" prefHeight="25.0" prefWidth="93.0" GridPane.columnIndex="1">
+                           <effect>
+                              <Lighting>
+                                 <bumpInput>
+                                    <Shadow />
+                                 </bumpInput>
+                                 <light>
+                                    <Light.Distant />
+                                 </light>
+                              </Lighting>
+                           </effect>
+                        </TextField>
+                        <TextField fx:id="cognome" prefHeight="25.0" prefWidth="91.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <effect>
+                              <Lighting>
+                                 <bumpInput>
+                                    <Shadow />
+                                 </bumpInput>
+                                 <light>
+                                    <Light.Distant />
+                                 </light>
+                              </Lighting>
+                           </effect>
+                        </TextField>
+                        <TextField fx:id="password" prefHeight="25.0" prefWidth="91.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <effect>
+                              <Lighting>
+                                 <bumpInput>
+                                    <Shadow />
+                                 </bumpInput>
+                                 <light>
+                                    <Light.Distant />
+                                 </light>
+                              </Lighting>
+                           </effect>
+                        </TextField>
+                        <ComboBox fx:id="sesso" prefWidth="150.0" promptText="Seleziona..." GridPane.columnIndex="1" GridPane.rowIndex="3">
+                           <effect>
+                              <Lighting>
+                                 <bumpInput>
+                                    <Shadow />
+                                 </bumpInput>
+                                 <light>
+                                    <Light.Distant />
+                                 </light>
+                              </Lighting>
+                           </effect>
+                        </ComboBox>
+                        <DatePicker fx:id="data" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                           <effect>
+                              <Lighting>
+                                 <bumpInput>
+                                    <Shadow />
+                                 </bumpInput>
+                                 <light>
+                                    <Light.Distant />
+                                 </light>
+                              </Lighting>
+                           </effect>
+                        </DatePicker>
+                        <ComboBox fx:id="altezza" prefWidth="150.0" promptText="Seleziona..." GridPane.columnIndex="1" GridPane.rowIndex="5">
+                           <effect>
+                              <Lighting>
+                                 <bumpInput>
+                                    <Shadow />
+                                 </bumpInput>
+                                 <light>
+                                    <Light.Distant />
+                                 </light>
+                              </Lighting>
+                           </effect>
+                        </ComboBox>
+                        <ComboBox fx:id="peso" prefWidth="150.0" promptText="Seleziona..." GridPane.columnIndex="1" GridPane.rowIndex="6">
+                           <effect>
+                              <Lighting>
+                                 <bumpInput>
+                                    <Shadow />
+                                 </bumpInput>
+                                 <light>
+                                    <Light.Distant />
+                                 </light>
+                              </Lighting>
+                           </effect>
+                        </ComboBox>
+                        <ComboBox fx:id="attività" prefWidth="150.0" promptText="Seleziona..." GridPane.columnIndex="1" GridPane.rowIndex="7">
+                           <effect>
+                              <Lighting>
+                                 <bumpInput>
+                                    <Shadow />
+                                 </bumpInput>
+                                 <light>
+                                    <Light.Distant />
+                                 </light>
+                              </Lighting>
+                           </effect>
+                        </ComboBox>
+                     </children>
+                  </GridPane>
+                  <Button fx:id="modifica" layoutX="110.0" layoutY="302.0" mnemonicParsing="false" onAction="#modifica" style="-fx-background-color: #9d4040;" text="Modifica" textFill="#002147" AnchorPane.leftAnchor="110.0" AnchorPane.rightAnchor="110.0">
+                     <font>
+                        <Font name="AR DESTINE" size="12.0" />
+                     </font>
+                     <effect>
+                        <InnerShadow />
+                     </effect>
+                  </Button>
+               </children>
+            </AnchorPane>
+            <ToolBar prefHeight="32.0" prefWidth="91.0" style="-fx-background-color: #9d4040;">
+               <items>
+                  <Button fx:id="homepage" mnemonicParsing="false" onAction="#homepage" style="-fx-background-color: #9d4040;" text="Home Page" textFill="#002147">
+                     <effect>
+                        <InnerShadow />
+                     </effect>
+                     <font>
+                        <Font name="AR DESTINE" size="12.0" />
+                     </font>
+                  </Button>
+               </items>
+               <effect>
+                  <InnerShadow />
+               </effect>
+            </ToolBar>
+         </children>
+      </AnchorPane>
+   </content>
+</ScrollPane>

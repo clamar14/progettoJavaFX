@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<ScrollPane prefHeight="475.0" prefWidth="665.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.AdminPageController">
+   <content>
+      <AnchorPane prefHeight="463.0" prefWidth="701.0" style="-fx-background-image: url(&quot;https://ak8.picdn.net/shutterstock/videos/905008/thumb/1.jpg&quot;); -fx-background-repeat: no-repeat;">
+         <children>
+            <ToolBar prefHeight="32.0" prefWidth="71.0" style="-fx-background-color: #9d4040;">
+               <items>
+                  <Button fx:id="indietro" mnemonicParsing="false" onAction="#indietro" style="-fx-background-color: #9d4040;" text="Indietro" textFill="#002147">
+                     <effect>
+                        <InnerShadow />
+                     </effect>
+                     <font>
+                        <Font name="AR DESTINE" size="12.0" />
+                     </font>
+                  </Button>
+               </items>
+               <effect>
+                  <InnerShadow />
+               </effect>
+            </ToolBar>
+            <AnchorPane layoutX="151.0" layoutY="-3.0" prefHeight="86.0" prefWidth="366.0" style="-fx-background-color: #002147;">
+               <children>
+                  <Label alignment="CENTER" layoutY="-3.0" prefHeight="29.0" prefWidth="366.0" text="Questa area è dedicata agli amministratori" textFill="#9d4040" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <font>
+                        <Font name="AR DESTINE" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" layoutY="29.0" prefHeight="14.0" prefWidth="370.0" text="Inserisci il codice se sei un amministratore" textFill="#9d4040">
+                     <font>
+                        <Font name="AR DESTINE" size="14.0" />
+                     </font>
+                  </Label>
+                  <PasswordField fx:id="codice" layoutX="110.0" layoutY="54.0" prefHeight="25.0" prefWidth="91.0">
+                     <effect>
+                        <Lighting>
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant />
+                           </light>
+                        </Lighting>
+                     </effect>
+                  </PasswordField>
+                  <Button fx:id="inserisci" contentDisplay="CENTER" layoutX="205.0" layoutY="56.0" mnemonicParsing="false" onAction="#inserisci" style="-fx-background-color: #9d4040;" styleClass=".button" text="Inserisci" textFill="#002147">
+                     <font>
+                        <Font name="AR DESTINE" size="12.0" />
+                     </font>
+                     <effect>
+                        <InnerShadow />
+                     </effect>
+                  </Button>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="adminPane" layoutX="151.0" layoutY="132.0" prefHeight="125.0" prefWidth="381.0" style="-fx-background-color: #002147;" visible="false">
+               <children>
+                  <Label alignment="CENTER" layoutY="14.0" prefHeight="17.0" prefWidth="381.0" text="Seleziona l'azione che vuoi eseguire" textFill="#9d4040">
+                     <font>
+                        <Font name="AR DESTINE" size="14.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="aggiungiAliimento" layoutX="14.0" layoutY="50.0" mnemonicParsing="false" onAction="#addFood" prefWidth="115.0" style="-fx-background-color: #9d4040;" text="Aggiungi alimento" textFill="#002147" AnchorPane.leftAnchor="14.0">
+                     <font>
+                        <Font name="AR DESTINE" size="12.0" />
+                     </font>
+                     <effect>
+                        <InnerShadow />
+                     </effect>
+                  </Button>
+                  <Button fx:id="rimuoviAlimento" layoutX="133.0" layoutY="50.0" mnemonicParsing="false" onAction="#deleteFood" prefWidth="115.0" style="-fx-background-color: #9d4040;" text="Rimuovi alimento" textFill="#002147">
+                     <font>
+                        <Font name="AR DESTINE" size="12.0" />
+                     </font>
+                     <effect>
+                        <InnerShadow />
+                     </effect>
+                  </Button>
+                  <Button fx:id="cercaAlimento" layoutX="252.0" layoutY="50.0" mnemonicParsing="false" onAction="#searchFood" prefWidth="115.0" style="-fx-background-color: #9d4040;" text="Cerca alimento" textFill="#002147" AnchorPane.rightAnchor="14.0">
+                     <font>
+                        <Font name="AR DESTINE" size="12.0" />
+                     </font>
+                     <effect>
+                        <InnerShadow />
+                     </effect>
+                  </Button>
+                  <Button fx:id="aggiungiSport" layoutX="14.0" layoutY="89.0" mnemonicParsing="false" onAction="#addSport" prefWidth="115.0" style="-fx-background-color: #9d4040;" text="Aggiungi sport" textFill="#002147" AnchorPane.leftAnchor="14.0">
+                     <font>
+                        <Font name="AR DESTINE" size="12.0" />
+                     </font>
+                     <effect>
+                        <InnerShadow />
+                     </effect>
+                  </Button>
+                  <Button fx:id="rimuoviSport" layoutX="133.0" layoutY="89.0" mnemonicParsing="false" onAction="#deleteSport" prefWidth="115.0" style="-fx-background-color: #9d4040;" text="Rimuovi sport" textFill="#002147">
+                     <font>
+                        <Font name="AR DESTINE" size="12.0" />
+                     </font>
+                     <effect>
+                        <InnerShadow />
+                     </effect>
+                  </Button>
+                  <Button fx:id="cercaSport" layoutX="252.0" layoutY="89.0" mnemonicParsing="false" onAction="#searchSport" prefWidth="115.0" style="-fx-background-color: #9d4040;" text="Cerca sport" textFill="#002147">
+                     <font>
+                        <Font name="AR DESTINE" size="12.0" />
+                     </font>
+                     <effect>
+                        <InnerShadow />
+                     </effect>
+                  </Button>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="actionPane" layoutX="146.0" layoutY="285.0" prefHeight="108.0" prefWidth="381.0" style="-fx-background-color: #002147;" visible="false">
+               <children>
+                  <Label fx:id="azioneSelezionata" alignment="CENTER" layoutY="14.0" prefHeight="17.0" prefWidth="381.0" text="Label" textFill="#9d4040">
+                     <font>
+                        <Font name="AR DESTINE" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="field1" layoutX="14.0" layoutY="46.0" prefHeight="25.0" prefWidth="91.0" AnchorPane.leftAnchor="14.0">
+                     <effect>
+                        <Lighting>
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant />
+                           </light>
+                        </Lighting>
+                     </effect>
+                  </TextField>
+                  <TextField fx:id="field2" layoutX="134.0" layoutY="46.0" prefHeight="25.0" prefWidth="91.0">
+                     <effect>
+                        <Lighting>
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant />
+                           </light>
+                        </Lighting>
+                     </effect>
+                  </TextField>
+                  <Button fx:id="esegui" layoutX="260.0" layoutY="48.0" mnemonicParsing="false" onAction="#esegui" prefWidth="115.0" style="-fx-background-color: #9d4040;" text="Esegui" textFill="#002147" AnchorPane.rightAnchor="14.0">
+                     <font>
+                        <Font name="AR DESTINE" size="12.0" />
+                     </font>
+                     <effect>
+                        <InnerShadow />
+                     </effect>
+                  </Button>
+                  <Label fx:id="descrizione1" alignment="CENTER" layoutX="15.0" layoutY="79.0" prefHeight="17.0" prefWidth="90.0" text="Label" textFill="#9d4040">
+                     <font>
+                        <Font name="AR DESTINE" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="descrizione2" alignment="CENTER" layoutX="110.0" layoutY="77.0" prefHeight="21.0" prefWidth="139.0" text="Label" textFill="#9d4040">
+                     <font>
+                        <Font name="AR DESTINE" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </content>
+</ScrollPane>
