@@ -32,7 +32,7 @@
                   <InnerShadow />
                </effect>
             </ToolBar>
-            <AnchorPane layoutX="151.0" layoutY="-3.0" prefHeight="86.0" prefWidth="366.0" style="-fx-background-color: #002147;">
+            <AnchorPane layoutX="151.0" prefHeight="86.0" prefWidth="381.0" style="-fx-background-color: #002147;" AnchorPane.leftAnchor="151.0">
                <children>
                   <Label alignment="CENTER" layoutY="-3.0" prefHeight="29.0" prefWidth="366.0" text="Questa area è dedicata agli amministratori" textFill="#9d4040" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <font>
@@ -44,7 +44,7 @@
                         <Font name="AR DESTINE" size="14.0" />
                      </font>
                   </Label>
-                  <PasswordField fx:id="codice" layoutX="110.0" layoutY="54.0" prefHeight="25.0" prefWidth="91.0">
+                  <PasswordField fx:id="codice" layoutX="110.0" layoutY="54.0" prefHeight="25.0" prefWidth="91.0" AnchorPane.leftAnchor="110.0">
                      <effect>
                         <Lighting>
                            <bumpInput>
@@ -56,7 +56,7 @@
                         </Lighting>
                      </effect>
                   </PasswordField>
-                  <Button fx:id="inserisci" contentDisplay="CENTER" layoutX="205.0" layoutY="56.0" mnemonicParsing="false" onAction="#inserisci" style="-fx-background-color: #9d4040;" styleClass=".button" text="Inserisci" textFill="#002147">
+                  <Button fx:id="inserisci" contentDisplay="CENTER" layoutX="211.0" layoutY="56.0" mnemonicParsing="false" onAction="#inserisci" style="-fx-background-color: #9d4040;" styleClass=".button" text="Inserisci" textFill="#002147" AnchorPane.rightAnchor="110.0">
                      <font>
                         <Font name="AR DESTINE" size="12.0" />
                      </font>
@@ -66,7 +66,7 @@
                   </Button>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="adminPane" layoutX="151.0" layoutY="132.0" prefHeight="125.0" prefWidth="381.0" style="-fx-background-color: #002147;" visible="false">
+            <AnchorPane fx:id="adminPane" layoutX="151.0" layoutY="99.0" prefHeight="125.0" prefWidth="357.0" style="-fx-background-color: #002147;" visible="false" AnchorPane.leftAnchor="151.0">
                <children>
                   <Label alignment="CENTER" layoutY="14.0" prefHeight="17.0" prefWidth="381.0" text="Seleziona l'azione che vuoi eseguire" textFill="#9d4040">
                      <font>
@@ -123,9 +123,9 @@
                   </Button>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="actionPane" layoutX="146.0" layoutY="285.0" prefHeight="108.0" prefWidth="381.0" style="-fx-background-color: #002147;" visible="false">
+            <AnchorPane fx:id="actionPane" layoutX="151.0" layoutY="247.0" prefHeight="131.0" prefWidth="378.0" style="-fx-background-color: #002147;" visible="false" AnchorPane.leftAnchor="151.0">
                <children>
-                  <Label fx:id="azioneSelezionata" alignment="CENTER" layoutY="14.0" prefHeight="17.0" prefWidth="381.0" text="Label" textFill="#9d4040">
+                  <Label fx:id="azioneSelezionata" alignment="CENTER" layoutY="14.0" prefHeight="17.0" prefWidth="381.0" text="Label" textFill="#9d4040" AnchorPane.leftAnchor="0.0">
                      <font>
                         <Font name="AR DESTINE" size="14.0" />
                      </font>
@@ -154,7 +154,7 @@
                         </Lighting>
                      </effect>
                   </TextField>
-                  <Button fx:id="esegui" layoutX="260.0" layoutY="48.0" mnemonicParsing="false" onAction="#esegui" prefWidth="115.0" style="-fx-background-color: #9d4040;" text="Esegui" textFill="#002147" AnchorPane.rightAnchor="14.0">
+                  <Button fx:id="esegui" layoutX="260.0" layoutY="48.0" mnemonicParsing="false" onAction="#esegui" prefHeight="22.0" prefWidth="109.0" style="-fx-background-color: #9d4040;" text="Esegui" textFill="#002147" AnchorPane.rightAnchor="20.0">
                      <font>
                         <Font name="AR DESTINE" size="12.0" />
                      </font>
@@ -172,8 +172,26 @@
                         <Font name="AR DESTINE" size="12.0" />
                      </font>
                   </Label>
+                  <Label fx:id="messaggio" alignment="CENTER" layoutX="6.0" layoutY="101.0" prefHeight="30.0" prefWidth="372.0" textFill="#9d4040" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                     <font>
+                        <Font name="AR DESTINE" size="14.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
+            <ScrollPane fx:id="searchScrollPane" layoutX="151.0" layoutY="378.0" prefHeight="85.0" prefWidth="381.0" style="-fx-background-color: #002147;" visible="false" AnchorPane.leftAnchor="151.0">
+              <content>
+                <AnchorPane fx:id="searchAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="197.0" prefWidth="376.0" style="-fx-background-color: #002147;">
+                     <children>
+                        <Label fx:id="lista" alignment="TOP_LEFT" layoutX="5.0" prefHeight="197.0" prefWidth="376.0" text="Label" textFill="#9d4040" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <font>
+                              <Font name="AR DESTINE" size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </ScrollPane>
          </children>
       </AnchorPane>
    </content>

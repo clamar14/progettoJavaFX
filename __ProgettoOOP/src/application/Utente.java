@@ -1,7 +1,12 @@
 package application;
 
 import java.sql.*;
-import java.util.*;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Calendar;
+import java.util.Date;
 
 public class Utente {
 	
@@ -11,25 +16,24 @@ public class Utente {
 	private int altezza;
 	private int peso;
 	private String attivit‡;
-	double laf;
-	double mb;
-	
 
 	public Utente(String username){
 		this.username=username;
 		ResultSet rs = Database.query("SELECT * from Utente where username = '" +this.username+ "'");
-		try {
+		try {			
 			this.sesso=rs.getString("sesso");
-			this.et‡=(Calendar.getInstance().get(Calendar.YEAR)-rs.getInt("annoDiNascita"));
+			
+			this.et‡=(Calendar.getInstance().get(Calendar.YEAR)-calcolaAnno(rs.getString("dataDiNascita")));
+	
 			this.altezza=rs.getInt("altezza");
 			this.peso=rs.getInt("peso");
 			this.attivit‡=rs.getString("attivit‡");
-			metabolismoBasale();
-			livelloAttivit‡Fisica();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ParseException e){
 			e.printStackTrace();
 		}
+		
 	}
 	
 	public String getUserName(){
@@ -56,8 +60,29 @@ public class Utente {
 		return attivit‡;
 	}
 	
+	
+	public void setSesso(String sesso){
+		this.sesso=sesso;
+	}
+	
+	public void setEt‡(LocalDate data){
+		this.et‡=(Calendar.getInstance().get(Calendar.YEAR)-data.getYear());
+	}
+	
+	public void setAltezza(int altezza){
+		this.altezza=altezza;
+	}
+	
+	public void setPeso(int peso){
+		this.peso=peso;
+	}
+
+	public void setAttivit‡(String attivit‡){
+		this.attivit‡=attivit‡;
+	}
+	
 	public double metabolismoBasale(){
-		mb = 0;
+		double mb = 0;
 		
 		if(et‡<18){
 			if(sesso.equals("donna")){
@@ -98,7 +123,7 @@ public class Utente {
 	}
 	
 	public double livelloAttivit‡Fisica(){
-		laf = 0;
+		double laf = 0;
 		if(et‡>=75){
 			if(sesso.equals("donna")){
 				laf = 1.37;
@@ -137,8 +162,15 @@ public class Utente {
 	}
 	
 	public int getFabbisogno(){
-		return (int)(mb*laf);
+		return (int)(metabolismoBasale()*livelloAttivit‡Fisica());
 	}
-	
+
+	private int calcolaAnno(String data) throws ParseException{
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = df.parse(data);
+		Calendar c = Calendar.getInstance();
+		c.setTime(date);
+		return c.get(Calendar.YEAR);
+	}
 }
 

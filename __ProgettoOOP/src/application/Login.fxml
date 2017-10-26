@@ -98,6 +98,11 @@
                   <InnerShadow />
                </effect>
             </ToolBar>
+            <Label fx:id="messaggio" alignment="CENTER" layoutX="193.0" layoutY="25.0" prefHeight="14.0" prefWidth="216.0" text="UserName o Password errati" textFill="#9d4040" visible="false">
+               <font>
+                  <Font name="AR DESTINE" size="12.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </content>

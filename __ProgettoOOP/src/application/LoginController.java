@@ -25,7 +25,8 @@ public class LoginController {
     @FXML
     private Button admin;
     
-    public static Utente user;
+    @FXML
+    private Label messaggio;
 
     @FXML
     void login(ActionEvent e) {
@@ -33,8 +34,9 @@ public class LoginController {
 			ResultSet rs = Database.query("SELECT * from Utente where username = '" +userName.getText()+ "' AND password = '" +String.valueOf(password.getText())+ "'");
 			if (rs.next()){
 				try {
-					user = new Utente(rs.getString("username"));
+					HomePageController controller = new HomePageController(new Utente(rs.getString("username")));
 					FXMLLoader loader = new FXMLLoader(Main.class.getResource("HomePage.fxml"));
+					loader.setController(controller);
 					ScrollPane registrazione = (ScrollPane) loader.load();
 					Scene scene = new Scene(registrazione);
 					Main.getStage().setScene(scene);
@@ -43,7 +45,7 @@ public class LoginController {
 				}
 			}
 			else{
-				//new Errore("Username o Password errati");
+				messaggio.setVisible(true);
 			}	
 		}
 		catch (SQLException ex) {
@@ -74,9 +76,5 @@ public class LoginController {
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
-    }
-    
-    public static Utente getUser(){
-    	return user;
     }
 }

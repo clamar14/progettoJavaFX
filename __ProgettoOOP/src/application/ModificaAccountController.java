@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
@@ -14,15 +17,16 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 
 public class ModificaAccountController implements Initializable {
-
+	private Utente user;
+	
     @FXML
     private TextField nome;
 
     @FXML
     private TextField cognome;
-
+    
     @FXML
-    private TextField password;
+    private Label messaggio;
 
     @FXML
     private ComboBox<String> sesso;
@@ -45,21 +49,41 @@ public class ModificaAccountController implements Initializable {
     @FXML
     private Button indietro;
 
+    public ModificaAccountController(Utente user){
+    	this.user=user;
+    }
+    
     @FXML
     void homepage(ActionEvent event) {
     	try {
+    		HomePageController controller = new HomePageController(user);
 			FXMLLoader loader = new FXMLLoader(Main.class.getResource("HomePage.fxml"));
-			ScrollPane homepage = (ScrollPane) loader.load();
-			Scene scene = new Scene(homepage);
+			loader.setController(controller);
+			ScrollPane registrazione = (ScrollPane) loader.load();
+			Scene scene = new Scene(registrazione);
 			Main.getStage().setScene(scene);
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
     }
-
+    
     @FXML
-    void modifica(ActionEvent event) {
-
+    void modifica(ActionEvent event) {  	
+    	Database.update("UPDATE Utente "
+				+"SET nome='"+nome.getText()
+				+"', cognome='"+cognome.getText()
+				+"', dataDiNascita='"+data.getValue()
+				+"', sesso='"+sesso.getValue()
+				+"', peso='"+peso.getValue()
+				+"', altezza='"+altezza.getValue()
+				+"', attività='"+attività.getValue()
+				+"' WHERE username='"+user.getUserName()+"'");
+    	user.setAltezza(altezza.getValue());
+    	user.setAttività(attività.getValue());
+    	user.setEtà(data.getValue());
+    	user.setPeso(peso.getValue());
+    	user.setSesso(sesso.getValue());
+    	messaggio.setVisible(true);
     }
 
     @Override
@@ -78,17 +102,25 @@ public class ModificaAccountController implements Initializable {
   		
   		attività.getItems().addAll("Leggera", "Moderata", "Pesante");
   		
-  		ResultSet rs = Database.query("SELECT * from Utente where username = '" +LoginController.getUser().getUserName()+ "'");
+  		ResultSet rs = Database.query("SELECT * from Utente where username = '" +user.getUserName()+ "'");
 		try {
 			nome.setText(rs.getString("nome"));
 			cognome.setText(rs.getString("cognome"));
 			sesso.setValue(rs.getString("sesso"));
-			//=(Calendar.getInstance().get(Calendar.YEAR)-rs.getInt("annoDiNascita"));
+			
+			SimpleDateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
+		    String dateInString = rs.getString("dataDiNascita");
+		    Date date = dt.parse(dateInString);
+		    data.setValue(date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+		        
 			altezza.setValue(rs.getInt("altezza"));
 			peso.setValue(rs.getInt("peso"));
 			attività.setValue(rs.getString("attività"));
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}
+		catch (Exception e) {
+            e.printStackTrace();
 		}
 	}
 

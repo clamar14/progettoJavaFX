@@ -67,6 +67,18 @@ public class AdminPageController {
 
     @FXML
     private Label descrizione2;
+    
+    @FXML
+    private ScrollPane searchScrollPane;
+
+    @FXML
+    private AnchorPane searchAnchorPane;
+    
+    @FXML
+    private Label lista;
+    
+    @FXML
+    private Label messaggio;
 
     @FXML
     void addFood(ActionEvent event) {
@@ -151,63 +163,95 @@ public class AdminPageController {
     
     @FXML
     void esegui(ActionEvent event) {
-    	if(azioneSelezionata.equals("Aggiungi alimento")){
-			if(field1.getText()!=null && field2.getText()!=null)
+    	searchScrollPane.setVisible(false);
+    	messaggio.setText("");
+    	if(azioneSelezionata.getText().equals("Aggiungi alimento")){
+			if(!field1.getText().isEmpty() && !field2.getText().isEmpty())
 				Database.update("INSERT INTO alimenti (nome, kcal_100g) VALUES('"+ field1.getText()+"','"+field2.getText()+"')");
-			//else
-				//new Errore("Inserire un alimento con le rispettive calorie");
+			else{
+				messaggio.setText("Inserire un alimento con le rispettive calorie");
+			}
 		}
-		if(azioneSelezionata.equals("Aggiungi sport")){
-			if(field1.getText()!=null && field2.getText()!=null)
+		if(azioneSelezionata.getText().equals("Aggiungi sport")){
+			if(!field1.getText().isEmpty() && !field2.getText().isEmpty())
 				Database.update("INSERT INTO sport (nome, kcal_ora) VALUES('"+field1.getText()+"','"+field2.getText()+"')");
-			//else
-				//new Errore("Inserire uno sport con le rispettive calorie");
+			else
+				messaggio.setText("Inserire uno sport con le rispettive calorie");
 		}
-		if(azioneSelezionata.equals("Rimuovi alimento")){
+		if(azioneSelezionata.getText().equals("Rimuovi alimento")){
 			ResultSet rs= Database.query("SELECT * FROM alimenti WHERE nome='"+field1.getText()+"'");
 			try {
 				if(rs.next())
 					Database.update("DELETE FROM alimenti where nome='"+field1.getText()+"'");
-				//else
-					//new Errore("Impossibile rimuovere un alimento non presente nel database");
+				else
+					messaggio.setText("Impossibile rimuovere un alimento non presente nel database");
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			}
 		}
-		if(azioneSelezionata.equals("Rimuovi sport")){
+		if(azioneSelezionata.getText().equals("Rimuovi sport")){
 			ResultSet rs= Database.query("SELECT * FROM sport WHERE nome='"+field1.getText()+"'");
 			try {
 				if(rs.next())
 					Database.update("DELETE FROM sport where nome='"+field2.getText()+"'");
-				//else
-					//new Errore("Impossibile rimuovere uno sport non presente nel database");
+				else
+					messaggio.setText("Impossibile rimuovere uno sport non presente nel database");
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			}
 		}
-		if(azioneSelezionata.equals("Cerca alimento")){
-			ResultSet rs;
-			if(field1.getText()!=null && field2.getText()!=null)
+		if(azioneSelezionata.getText().equals("Cerca alimento")){
+			ResultSet rs = null;
+			if(!field1.getText().isEmpty() && !field2.getText().isEmpty())
 				rs=Database.query("SELECT * FROM alimenti WHERE nome='"+field1.getText()+"' AND kcal_100g='"+field2.getText()+"'");
-			if(field1.getText()==null)
+			if(field1.getText().isEmpty())
 				rs=Database.query("SELECT * FROM alimenti WHERE kcal_100g='"+field2.getText()+"'");
-			if(field2.getText()==null)
-				rs=Database.query("SELECT * FROM alimenti WHERE nome='"+field1.getText()+"'");
-				
-			//CERCA
+			if(field2.getText().isEmpty())
+					rs=Database.query("SELECT * FROM alimenti WHERE nome='"+field1.getText()+"'");
+		
+			try {
+				if(!rs.next())
+					messaggio.setText("Non sono presenti alimenti corrispondenti");
+				else {
+					searchScrollPane.setVisible(true);
+					String s=rs.getString("nome")+", "+rs.getString("kcal_100g")+" kcal per 100 grammi\n";
+					while(rs.next()){
+						s=s+rs.getString("nome")+", "+rs.getString("kcal_100g")+" kcal per 100 grammi\n";
+					}
+					lista.setText(s);
+				}
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
 			
 		}
-		if(azioneSelezionata.equals("Cerca sport")){
-			ResultSet rs;
-			if(field1.getText()!=null && field2.getText()!=null)
+		if(azioneSelezionata.getText().equals("Cerca sport")){
+			ResultSet rs = null;
+			if(!field1.getText().isEmpty() && !field2.getText().isEmpty())
 				rs=Database.query("SELECT * FROM sport WHERE nome='"+field1.getText()+"' AND kcal_ora='"+field2.getText()+"'");
-			if(field1.getText()==null)
+			if(field1.getText().isEmpty())
 				rs=Database.query("SELECT * FROM sport WHERE kcal_ora='"+field2.getText()+"'");
-			if(field2.getText()==null)
+			if(field2.getText().isEmpty())
 				rs=Database.query("SELECT * FROM sport WHERE nome='"+field1.getText()+"'");
 				
-			//CERCA
-			
+			try {
+				if(!rs.next())
+					messaggio.setText("Non sono presenti sport corrispondenti ai parametri di ricerca");
+				else{
+					searchScrollPane.setVisible(true);
+					String s=rs.getString("nome")+", "+rs.getString("kcal_ora")+" kcal consumate in un'ora\n";
+					while(rs.next()){
+						s=s+rs.getString("nome")+", "+rs.getString("kcal_ora")+" kcal consumate in un'ora\n";
+					}
+					System.out.println(s);
+					lista.setText(s);
+				}	
+					
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
 		}
     }
+    
+   
 }

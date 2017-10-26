@@ -26,8 +26,9 @@ public class GraficoController implements Initializable {
 	    @FXML
 	    private PieChart pieChart;
 	    
-	    public GraficoController(){
-	    	username = LoginController.getUser().getUserName(); 
+	    
+	    public GraficoController(String username){
+	    	this.username = username; 
 	    }
 
 	    @FXML
@@ -39,9 +40,11 @@ public class GraficoController implements Initializable {
 	    @FXML
 	    void homepage(ActionEvent event) {
 	    	try {
+	    		HomePageController controller = new HomePageController(new Utente(username));
 				FXMLLoader loader = new FXMLLoader(Main.class.getResource("HomePage.fxml"));
-				ScrollPane homepage = (ScrollPane) loader.load();
-				Scene scene = new Scene(homepage);
+				loader.setController(controller);
+				ScrollPane registrazione = (ScrollPane) loader.load();
+				Scene scene = new Scene(registrazione);
 				Main.getStage().setScene(scene);
 			} catch (IOException e1) {
 				e1.printStackTrace();
@@ -66,14 +69,14 @@ public class GraficoController implements Initializable {
 			ResultSet rs = Database.query("SELECT * FROM Diario WHERE username='"+username+"' AND data='"+data.getValue()+"'");
 			try {
 				if(rs.next()){
-					//	if(rs.getInt("kcal_colazione")!=0)
-							dataset.add(new PieChart.Data("Prima Colazione", new Double(rs.getInt("kcal_colazione"))));
-					//	if(rs.getInt("kcal_pranzo")!=0)
-							dataset.add(new PieChart.Data("Pranzo", new Double(rs.getInt("kcal_pranzo"))));
-					//	if(rs.getInt("kcal_cena")!=0)
-							dataset.add(new PieChart.Data("Cena", new Double(rs.getInt("kcal_cena"))));
-					//	if(rs.getInt("kcal_snack")!=0)
-							dataset.add(new PieChart.Data("Snack", new Double(rs.getInt("kcal_snack"))));
+					if(rs.getInt("kcal_colazione")!=0)
+						dataset.add(new PieChart.Data("Prima Colazione", new Double(rs.getInt("kcal_colazione"))));
+					if(rs.getInt("kcal_pranzo")!=0)
+						dataset.add(new PieChart.Data("Pranzo", new Double(rs.getInt("kcal_pranzo"))));
+					if(rs.getInt("kcal_cena")!=0)
+						dataset.add(new PieChart.Data("Cena", new Double(rs.getInt("kcal_cena"))));
+					if(rs.getInt("kcal_snack")!=0)
+						dataset.add(new PieChart.Data("Snack", new Double(rs.getInt("kcal_snack"))));
 				}
 			} catch (SQLException e) {
 					e.printStackTrace();

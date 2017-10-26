@@ -46,18 +46,33 @@ public class HomePageController implements Initializable {
 
     @FXML
     private Button modifica;
+    
+    private Utente user;
+    
+    public HomePageController(Utente user){
+    	this.user=user;
+    }
 
     @FXML
     void aggiornaDiario(ActionEvent event) {
-
+    	try {
+    		DiarioController controller = new DiarioController(user);
+			FXMLLoader loader = new FXMLLoader(Main.class.getResource("Diario.fxml"));
+			loader.setController(controller);
+			ScrollPane diario = (ScrollPane) loader.load();
+			Scene scene = new Scene(diario);
+			Main.getStage().setScene(scene);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
     }
 
     @FXML
     void logout(ActionEvent event) {
     	try {
 			FXMLLoader loader = new FXMLLoader(Main.class.getResource("Login.fxml"));
-			ScrollPane registrazione = (ScrollPane) loader.load();
-			Scene scene = new Scene(registrazione);
+			ScrollPane login = (ScrollPane) loader.load();
+			Scene scene = new Scene(login);
 			Main.getStage().setScene(scene);
 		} catch (IOException e1) {
 			e1.printStackTrace();
@@ -72,7 +87,9 @@ public class HomePageController implements Initializable {
     @FXML
     void modificaProfilo(ActionEvent event) {
     	try {
+    		ModificaAccountController controller = new ModificaAccountController(user);
 			FXMLLoader loader = new FXMLLoader(Main.class.getResource("ModificaAccount.fxml"));
+			loader.setController(controller);
 			ScrollPane modifica = (ScrollPane) loader.load();
 			Scene scene = new Scene(modifica);
 			Main.getStage().setScene(scene);
@@ -84,7 +101,9 @@ public class HomePageController implements Initializable {
     @FXML
     void visualizzaDiario(ActionEvent event) {
     	try {
+    		GraficoController controller = new GraficoController(user.getUserName());
 			FXMLLoader loader = new FXMLLoader(Main.class.getResource("Grafico.fxml"));
+			loader.setController(controller);
 			ScrollPane diario = (ScrollPane) loader.load();
 			Scene scene = new Scene(diario);
 			Main.getStage().setScene(scene);
@@ -95,13 +114,12 @@ public class HomePageController implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		Utente u = LoginController.getUser();
-		benvenuto.setText(benvenuto.getText()+" "+u.getUserName());
-		sesso.setText(u.getSesso());
-		peso.setText(String.valueOf(u.getPeso())+" kg");
-		altezza.setText(String.valueOf(u.getAltezza())+" cm");
-		età.setText(String.valueOf(u.getEtà())+" anni");
-		fabbisogno.setText(fabbisogno.getText()+":\n"+String.valueOf(u.getFabbisogno())+" kcal");
+		benvenuto.setText(benvenuto.getText()+" "+user.getUserName());
+		sesso.setText(user.getSesso());
+		peso.setText(String.valueOf(user.getPeso())+" kg");
+		altezza.setText(String.valueOf(user.getAltezza())+" cm");
+		età.setText(String.valueOf(user.getEtà())+" anni");
+		fabbisogno.setText(fabbisogno.getText()+":\n"+String.valueOf(user.getFabbisogno())+" kcal");
 	}
 
 }

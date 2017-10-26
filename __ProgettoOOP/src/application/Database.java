@@ -34,7 +34,7 @@ public class Database {
 	public void testInsert() {
         try{
         	st.executeUpdate("CREATE TABLE IF NOT EXISTS Utente (username varchar(25) PRIMARY KEY, password varchar(30), "
-        			+ "nome varchar(15), cognome varchar(20), sesso varchar(5), annoDiNascita int, peso int, "
+        			+ "nome varchar(15), cognome varchar(20), sesso varchar(5), dataDiNascita date, peso int, "
         			+ "altezza int, attività varchar(30))"); 
         	
         	st.executeUpdate("CREATE TABLE IF NOT EXISTS alimenti (nome VARCHAR(50) PRIMARY KEY ,kcal_100g INTEGER)");

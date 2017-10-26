@@ -4,6 +4,7 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToolBar?>
@@ -121,7 +122,7 @@
                               </Lighting>
                            </effect>
                         </TextField>
-                        <TextField fx:id="password" prefHeight="25.0" prefWidth="91.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                        <PasswordField fx:id="password" GridPane.columnIndex="1" GridPane.rowIndex="3">
                            <effect>
                               <Lighting>
                                  <bumpInput>
@@ -132,7 +133,7 @@
                                  </light>
                               </Lighting>
                            </effect>
-                        </TextField>
+                        </PasswordField>
                         <ComboBox fx:id="sesso" prefWidth="150.0" promptText="Seleziona..." GridPane.columnIndex="1" GridPane.rowIndex="4">
                            <effect>
                               <Lighting>
@@ -220,6 +221,11 @@
                   <InnerShadow />
                </effect>
             </ToolBar>
+            <Label fx:id="messaggio" alignment="CENTER" layoutX="181.0" layoutY="16.0" prefHeight="14.0" prefWidth="290.0" text="Label" textFill="#9d4040" visible="false">
+               <font>
+                  <Font name="AR DESTINE" size="12.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </content>
