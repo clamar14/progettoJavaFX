@@ -39,7 +39,7 @@ public class HomePageController implements Initializable {
     private Button aggiorna;
 
     @FXML
-    private Button alimentiMangiati;
+    private Button trend;
 
     @FXML
     private Button indietro;
@@ -80,8 +80,17 @@ public class HomePageController implements Initializable {
     }
 
     @FXML
-    void listaAlimenti(ActionEvent event) {
-
+    void visualizzaTendenza(ActionEvent event) {
+    	try {
+    		TrendController controller = new TrendController(user);
+    		FXMLLoader loader = new FXMLLoader(Main.class.getResource("Trend.fxml"));
+			loader.setController(controller);
+			ScrollPane modifica = (ScrollPane) loader.load();
+			Scene scene = new Scene(modifica);
+			Main.getStage().setScene(scene);
+    	} catch (IOException e1) {
+			e1.printStackTrace();
+		}
     }
 
     @FXML
@@ -101,7 +110,7 @@ public class HomePageController implements Initializable {
     @FXML
     void visualizzaDiario(ActionEvent event) {
     	try {
-    		GraficoController controller = new GraficoController(user.getUserName());
+    		GraficoController controller = new GraficoController(user);
 			FXMLLoader loader = new FXMLLoader(Main.class.getResource("Grafico.fxml"));
 			loader.setController(controller);
 			ScrollPane diario = (ScrollPane) loader.load();

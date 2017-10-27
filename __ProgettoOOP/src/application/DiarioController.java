@@ -33,13 +33,13 @@ public class DiarioController implements Initializable {
     private TextField alimento;
 
     @FXML
-    private TextField kcalAlimento;
+    private TextField grammiAlimento;
 
     @FXML
     private TextField sport;
 
     @FXML
-    private TextField kcalSport;
+    private TextField oreSport;
 
     @FXML
     private Label kcalColazione;
@@ -105,7 +105,7 @@ public class DiarioController implements Initializable {
     @FXML
     void addSnack(ActionEvent event) {
     	if(calcola())
-    		kcalSnack.setText(String.valueOf(Integer.parseInt(kcalSnack.getText())+Integer.parseInt(kcalAlimentoCalcolate.getText())));
+    		kcalSnack.setText(String.valueOf(Integer.parseInt(kcalAlimentoCalcolate.getText())));
     }
 
     @FXML
@@ -114,7 +114,7 @@ public class DiarioController implements Initializable {
 		try {
 			if(rs.next()){
 				int kcalParziale = rs.getInt("kcal_ora");
-				int quantità = Integer.parseInt(kcalSport.getText());
+				int quantità = Integer.parseInt(oreSport.getText());
 				kcalSportCalcolate.setText(String.valueOf(kcalParziale*quantità));
 				kcalConsumate.setText(String.valueOf(Integer.parseInt(kcalConsumate.getText())+Integer.parseInt(kcalSportCalcolate.getText())));
 				controlla();
@@ -136,6 +136,7 @@ public class DiarioController implements Initializable {
 				+"', kcal_cena='"+kcalCena.getText()
 				+"', kcal_snack='"+kcalSnack.getText()
 				+"', kcal_sport='"+kcalConsumate.getText()
+				+"', fabbisogno='"+user.getFabbisogno()
 				+"' WHERE username='"+user.getUserName()+"' AND data='"+day+"'");
     	try {
     		HomePageController controller = new HomePageController(user);
@@ -155,7 +156,7 @@ public class DiarioController implements Initializable {
 		try {
 			if(rs.next()){
 				int kcalParziale = rs.getInt("kcal_100g");
-				int quantità = Integer.parseInt(kcalAlimento.getText());
+				int quantità = Integer.parseInt(grammiAlimento.getText());
 				kcalAlimentoCalcolate.setText(String.valueOf(kcalParziale*quantità));
 				totale.setText(String.valueOf(Integer.parseInt(totale.getText())+Integer.parseInt(kcalAlimentoCalcolate.getText())));
 				controlla();

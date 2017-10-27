@@ -12,7 +12,7 @@ import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 
 public class GraficoController implements Initializable {
-		private String username;
+		private Utente user;
 		
 	    @FXML
 	    private Button indietro;
@@ -26,21 +26,33 @@ public class GraficoController implements Initializable {
 	    @FXML
 	    private PieChart pieChart;
 	    
+	    @FXML
+	    private Label kcalAssunte;
+
+	    @FXML
+	    private Label kcalConsumate;
+
+	    @FXML
+	    private Label fabbisogno;
+
 	    
-	    public GraficoController(String username){
-	    	this.username = username; 
+	    
+	    public GraficoController(Utente user){
+	    	this.user = user; 
 	    }
 
 	    @FXML
 	    void grafico(ActionEvent event) {
 	    	ObservableList<PieChart.Data> dataset = creaDataSet();
 	    	pieChart.setData(dataset);
+	    	kcalAssunte.setVisible(true);
+	    	kcalConsumate.setVisible(true);
 	    }
 
 	    @FXML
 	    void homepage(ActionEvent event) {
 	    	try {
-	    		HomePageController controller = new HomePageController(new Utente(username));
+	    		HomePageController controller = new HomePageController(user);
 				FXMLLoader loader = new FXMLLoader(Main.class.getResource("HomePage.fxml"));
 				loader.setController(controller);
 				ScrollPane registrazione = (ScrollPane) loader.load();
@@ -53,7 +65,8 @@ public class GraficoController implements Initializable {
 
 		@Override
 		public void initialize(URL location, ResourceBundle resources) {
-			ResultSet rs = Database.query("SELECT data FROM Diario WHERE username='"+username+"'");
+			fabbisogno.setText(fabbisogno.getText()+" "+user.getFabbisogno()+" kcal");
+			ResultSet rs = Database.query("SELECT data FROM Diario WHERE username='"+user.getUserName()+"'");
 			try {
 				while(rs.next()){
 						data.getItems().add(rs.getString("data"));
@@ -65,8 +78,9 @@ public class GraficoController implements Initializable {
 		}
 
 		private ObservableList<PieChart.Data> creaDataSet(){
+			pieChart.setAnimated(true);
 			ObservableList<PieChart.Data> dataset = FXCollections.observableArrayList();
-			ResultSet rs = Database.query("SELECT * FROM Diario WHERE username='"+username+"' AND data='"+data.getValue()+"'");
+			ResultSet rs = Database.query("SELECT * FROM Diario WHERE username='"+user.getUserName()+"' AND data='"+data.getValue()+"'");
 			try {
 				if(rs.next()){
 					if(rs.getInt("kcal_colazione")!=0)
@@ -77,6 +91,9 @@ public class GraficoController implements Initializable {
 						dataset.add(new PieChart.Data("Cena", new Double(rs.getInt("kcal_cena"))));
 					if(rs.getInt("kcal_snack")!=0)
 						dataset.add(new PieChart.Data("Snack", new Double(rs.getInt("kcal_snack"))));
+					kcalAssunte.setText("Hai assunto "+(rs.getInt("kcal_colazione")+rs.getInt("kcal_pranzo")
+											+rs.getInt("kcal_cena")+rs.getInt("kcal_snack"))+" kcal");
+					kcalConsumate.setText("Hai consumato "+rs.getInt("kcal_sport")+" kcal");
 				}
 			} catch (SQLException e) {
 					e.printStackTrace();

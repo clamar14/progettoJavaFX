@@ -5,6 +5,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -22,9 +23,7 @@ public class Utente {
 		ResultSet rs = Database.query("SELECT * from Utente where username = '" +this.username+ "'");
 		try {			
 			this.sesso=rs.getString("sesso");
-			
 			this.età=(Calendar.getInstance().get(Calendar.YEAR)-calcolaAnno(rs.getString("dataDiNascita")));
-	
 			this.altezza=rs.getInt("altezza");
 			this.peso=rs.getInt("peso");
 			this.attività=rs.getString("attività");

@@ -59,8 +59,8 @@ public class ModificaAccountController implements Initializable {
     		HomePageController controller = new HomePageController(user);
 			FXMLLoader loader = new FXMLLoader(Main.class.getResource("HomePage.fxml"));
 			loader.setController(controller);
-			ScrollPane registrazione = (ScrollPane) loader.load();
-			Scene scene = new Scene(registrazione);
+			ScrollPane homepage = (ScrollPane) loader.load();
+			Scene scene = new Scene(homepage);
 			Main.getStage().setScene(scene);
 		} catch (IOException e1) {
 			e1.printStackTrace();
