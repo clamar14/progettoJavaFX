@@ -11,6 +11,10 @@ import javafx.scene.*;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 
+/**
+ * Classe che permette di controllare l'interfaccia del grafico
+ *
+ */
 public class GraficoController implements Initializable {
 		private Utente user;
 		
@@ -41,6 +45,10 @@ public class GraficoController implements Initializable {
 	    	this.user = user; 
 	    }
 
+	    /**
+	     * Metodo che viene invocato per creare il grafico
+	     * @param event
+	     */
 	    @FXML
 	    void grafico(ActionEvent event) {
 	    	ObservableList<PieChart.Data> dataset = creaDataSet();
@@ -49,6 +57,10 @@ public class GraficoController implements Initializable {
 	    	kcalConsumate.setVisible(true);
 	    }
 
+	    /**
+	     * Metodo che permette di tornare all'homepage
+	     * @param event
+	     */
 	    @FXML
 	    void homepage(ActionEvent event) {
 	    	try {
@@ -63,6 +75,9 @@ public class GraficoController implements Initializable {
 			}
 	    }
 
+	    /**
+	     * Metodo che viene richiamato ad ogni apertura per permettere all'utente di selezionare la data
+	     */
 		@Override
 		public void initialize(URL location, ResourceBundle resources) {
 			fabbisogno.setText(fabbisogno.getText()+" "+user.getFabbisogno()+" kcal");
@@ -77,6 +92,10 @@ public class GraficoController implements Initializable {
 			
 		}
 
+		/**
+		 * Metodo che viene utilizzato per creare il Dataset
+		 * @return
+		 */
 		private ObservableList<PieChart.Data> creaDataSet(){
 			pieChart.setAnimated(true);
 			ObservableList<PieChart.Data> dataset = FXCollections.observableArrayList();

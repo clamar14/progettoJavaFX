@@ -16,6 +16,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 
+/**
+ * Classe che permette di controllare l'interfaccia in cui si può effettuare
+ *  la modifica delle informazioni di un utente
+ *
+ */
 public class ModificaAccountController implements Initializable {
 	private Utente user;
 	
@@ -53,6 +58,10 @@ public class ModificaAccountController implements Initializable {
     	this.user=user;
     }
     
+    /**
+     * Metodo che permette di tornare all'homepage
+     * @param event
+     */
     @FXML
     void homepage(ActionEvent event) {
     	try {
@@ -67,6 +76,10 @@ public class ModificaAccountController implements Initializable {
 		}
     }
     
+    /**
+     * Metodo che viene invocato ogni volta che un utente vuole modificare una o più delle sue informazioni 
+     * @param event
+     */
     @FXML
     void modifica(ActionEvent event) {  	
     	Database.update("UPDATE Utente "
@@ -85,7 +98,10 @@ public class ModificaAccountController implements Initializable {
     	user.setSesso(sesso.getValue());
     	messaggio.setVisible(true);
     }
-
+    /**
+     * Metodo che viene invocato ogni volta che viene aperta la pagina per modificare l'account
+     * e inizializza i vari campi con i dati immessi dall'utente in fase di registrazione
+     */
     @Override
   	public void initialize(URL arg0, ResourceBundle arg1) {
   		int i;

@@ -13,6 +13,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 
+/**
+ * Classe che permette di controllare l'interfaccia dell'homepage
+ *
+ */
 public class HomePageController implements Initializable {
 	@FXML
 	private Label benvenuto;
@@ -53,6 +57,10 @@ public class HomePageController implements Initializable {
     	this.user=user;
     }
 
+    /**
+     * Metodo con cui si apre il diario
+     * @param event
+     */
     @FXML
     void aggiornaDiario(ActionEvent event) {
     	try {
@@ -67,6 +75,10 @@ public class HomePageController implements Initializable {
 		}
     }
 
+    /**
+     * Metodo con cui si effetua il logout e si ritorna alla pagina di login
+     * @param event
+     */
     @FXML
     void logout(ActionEvent event) {
     	try {
@@ -79,6 +91,10 @@ public class HomePageController implements Initializable {
 		}
     }
 
+    /**
+     * Metodo che apre la pagina in cui l'utente può visualizzare le statistiche
+     * @param event
+     */
     @FXML
     void visualizzaTendenza(ActionEvent event) {
     	try {
@@ -93,6 +109,10 @@ public class HomePageController implements Initializable {
 		}
     }
 
+    /**
+     * Metodo che apre una pagina ed essa modifica il profilo
+     * @param event
+     */
     @FXML
     void modificaProfilo(ActionEvent event) {
     	try {
@@ -107,6 +127,10 @@ public class HomePageController implements Initializable {
 		}
     }
 
+    /**
+     * Metodo che apre la pagine in cui è presente il grafico a torta
+     * @param event
+     */
     @FXML
     void visualizzaDiario(ActionEvent event) {
     	try {
@@ -121,6 +145,9 @@ public class HomePageController implements Initializable {
 		}
     }
 
+    /**
+     * Metodo che viene richiamato a ogni apertura dell'interfaccia che permette di settare le informazioni dell'utente 
+     */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		benvenuto.setText(benvenuto.getText()+" "+user.getUserName());

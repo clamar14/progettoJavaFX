@@ -6,9 +6,16 @@ import javafx.stage.Stage;
 import javafx.scene.*;
 import javafx.scene.control.*;
 
+/**
+ * Classe che permette all' utente di effettuare il login o se non è iscritto di effettuare la sua registrazione 
+ *
+ */
 public class Main extends Application {
 	static Stage stage;
 	
+	/**
+	 *  Metodo con cui viene caricata la pagina dedicata all'amministratore
+	 */
 	@Override
 	public void start(Stage s) {
 		try {
@@ -31,6 +38,10 @@ public class Main extends Application {
 		return stage;
 	}
 	
+	/**
+	 * Main del programma 
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		Database db = new Database();
 		db.testInsert();

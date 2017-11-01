@@ -11,6 +11,10 @@ import javafx.fxml.*;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 
+/**
+ * Classe che permette di controllare l'interfaccia diario
+ *
+ */
 public class DiarioController implements Initializable {
 	private Utente user;
 	
@@ -84,30 +88,50 @@ public class DiarioController implements Initializable {
     }
     
     
+    /**
+     * Metodo con cui si aggiungono gli alimenti mangiati per colazione
+     * @param event
+     */
     @FXML
     void addBreakfast(ActionEvent event) {
     	if (calcola())
     	kcalColazione.setText(String.valueOf(Integer.parseInt(kcalColazione.getText())+Integer.parseInt(kcalAlimentoCalcolate.getText())));
     }
 
+    /**
+     * Metodo con cui si aggiungono gli alimenti mangiati per cena
+     * @param event
+     */
     @FXML
     void addDinner(ActionEvent event) {
     	if (calcola())
     		kcalCena.setText(String.valueOf(Integer.parseInt(kcalCena.getText())+Integer.parseInt(kcalAlimentoCalcolate.getText())));
     }
 
+    /**
+     * Metodo con cui si aggiungono gli alimenti mangiati per pranzo
+     * @param event
+     */
     @FXML
     void addLunch(ActionEvent event) {
     	if(calcola())
     		kcalPranzo.setText(String.valueOf(Integer.parseInt(kcalPranzo.getText())+Integer.parseInt(kcalAlimentoCalcolate.getText())));
     }
 
+    /**
+     * Metodo con cui si aggiungono gli alimenti mangiati per gli spuntini
+     * @param event
+     */
     @FXML
     void addSnack(ActionEvent event) {
     	if(calcola())
     		kcalSnack.setText(String.valueOf(Integer.parseInt(kcalAlimentoCalcolate.getText())));
     }
 
+    /**
+     * Metodo con cui si aggiungono gli sport fatti durante la giornata e calcola le calorie di ogni sport introdotto
+     * @param event
+     */
     @FXML
     void addSport(ActionEvent event) {
     	ResultSet rs = Database.query("SELECT kcal_ora FROM sport WHERE nome='" +sport.getText()+"'");
@@ -128,6 +152,10 @@ public class DiarioController implements Initializable {
 		kcalSportCalcolate.setVisible(true);
     }
 
+    /**
+     * Metodo che aggiorna il database e permette di tornare all'homepage
+     * @param event
+     */
     @FXML
     void homepage(ActionEvent event) {
     	Database.update("UPDATE Diario "
@@ -150,6 +178,10 @@ public class DiarioController implements Initializable {
 		}
     }
 
+    /**
+     * Metodo che calcola le calorie per ogni alimento introdotto e aggiorna il totale
+     * @return
+     */
     private boolean calcola(){
     	boolean retVal = false;
     	ResultSet rs = Database.query("SELECT kcal_100g FROM alimenti WHERE nome='" +alimento.getText()+"'");
@@ -172,6 +204,9 @@ public class DiarioController implements Initializable {
 		return retVal;
     }
 
+    /**
+     * Metodo che confronta le calorie introdotte durante il giorno e il fabbisogno energetico 
+     */
     private void controlla(){
     	int n = Integer.parseInt(fabbisogno.getText())+Integer.parseInt(kcalConsumate.getText());
     	int tot = Integer.parseInt(totale.getText());
@@ -198,6 +233,10 @@ public class DiarioController implements Initializable {
     	}
     }
     
+    /**
+     * Metodo che viene richiamato a ogni apertura dell'interfaccia che permette di settare le calorie introdotte 
+     * e consumate durante i giorno
+     */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		Date dt=new Date();

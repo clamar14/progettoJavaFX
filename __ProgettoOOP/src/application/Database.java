@@ -6,11 +6,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/**
+ * In questa classe si è creata la connessione con il database
+ *
+ */
 public class Database {
 	public static Connection con = null;
 	public static Statement st = null;
 	
-	/*costruttore: carica il driver e apre una connessione al DB*/
+	/**
+	 * Costruttore: carica il driver e apre una connessione al DB
+	 */
 	public Database (){
 		try {
 			Class.forName("org.sqlite.JDBC");
@@ -30,7 +36,9 @@ public class Database {
 		}
 		
 	}
-	
+	/**
+	 * Metodo per la costruzione delle tabelle 
+	 */
 	public void testInsert() {
         try{
         	st.executeUpdate("CREATE TABLE IF NOT EXISTS Utente (username varchar(25) PRIMARY KEY, password varchar(30), "
@@ -50,7 +58,9 @@ public class Database {
 		}
 	}
 	
-	/*metodo per l'interagire con il DB ed eseguire delle query*/
+	/**
+	 * Metodo per interagire con il DB ed eseguire delle query
+	 */
 	public static ResultSet query(String qry){
 		ResultSet rs = null;
 	
@@ -62,8 +72,9 @@ public class Database {
 		}
 		return rs;		
 	}
-	
-	/*metodo per l'interagire con il DB ed eseguire delle operazioni di INSERT, UPDATE or DELETE*/
+	/**
+	 * Metodo per interagire con il DB ed eseguire delle operazioni di INSERT, UPDATE or DELETE
+	 */
 	public static void update(String qry){
 		try {
 			st.executeUpdate(qry);
@@ -74,6 +85,9 @@ public class Database {
 			
 	}
 	
+	/**
+	 * Metodo con cui si chiude la connessione al database
+	 */
 	public void closeConnection() {
 		if (con != null)
 			try {

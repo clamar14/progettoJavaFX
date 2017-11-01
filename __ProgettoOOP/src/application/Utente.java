@@ -8,6 +8,10 @@ import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
 
+/**
+ * Questa classe rappresenta l'utente che ha effettuato il login e contiene tutte le sue informazioni 
+ *
+ */
 public class Utente {
 	
 	private String username;
@@ -16,7 +20,11 @@ public class Utente {
 	private int altezza;
 	private int peso;
 	private String attivit‡;
-
+    
+	/**
+	 * Costruttore che serve per inserire le informazione nell'utente
+	 * @param username
+	 */
 	public Utente(String username){
 		this.username=username;
 		ResultSet rs = Database.query("SELECT * from Utente where username = '" +this.username+ "'");
@@ -79,6 +87,10 @@ public class Utente {
 		this.attivit‡=attivit‡;
 	}
 	
+	/**
+	 * Questo metodo calcola il metabolismo basale di ogni utente 
+	 * @return double
+	 */
 	public double metabolismoBasale(){
 		double mb = 0;
 		
@@ -120,6 +132,10 @@ public class Utente {
 		return mb;
 	}
 	
+	/**
+	 * Questo metodo calcola il livello di attivit‡ fisica di ogni utente 
+	 * @return double
+	 */
 	public double livelloAttivit‡Fisica(){
 		double laf = 0;
 		if(et‡>=75){
@@ -159,10 +175,20 @@ public class Utente {
 		return laf;
 	}
 	
+	/**
+	 * Questo metodo calcola il fabbisogno energetico di una persona
+	 * @return int
+	 */
 	public int getFabbisogno(){
 		return (int)(metabolismoBasale()*livelloAttivit‡Fisica());
 	}
-
+    
+	/**
+	 * Questo metodo calcola gli anni di ogni utente registrato
+	 * @param data
+	 * @return int
+	 * @throws ParseException
+	 */
 	private int calcolaAnno(String data) throws ParseException{
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = df.parse(data);

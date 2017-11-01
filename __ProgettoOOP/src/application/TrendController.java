@@ -11,6 +11,12 @@ import javafx.scene.Scene;
 import javafx.scene.chart.*;
 import javafx.scene.control.*;
 
+/**
+ * Classe che permette di controllare l'interfaccia del grafico in cui si confrontano i diversi giorni della settimana
+ * in base alle calorie assunte e consumate
+ * @author ANDREAA
+ *
+ */
 public class TrendController implements Initializable{
 	private Utente user;
 	
@@ -30,6 +36,10 @@ public class TrendController implements Initializable{
     	this.user=user;
     }
 
+    /**
+     * Metodo che permette di tornare all'homepage
+     * @param event
+     */
     @FXML
     void homepage(ActionEvent event) {
     	try {
@@ -44,6 +54,10 @@ public class TrendController implements Initializable{
 		}
     }
 
+    /**
+     * Metodo con cui si può visualizzare il grafico che confronta i vari giorni della settimana
+     *  in base alle calorie assunte e quelle consumate
+     */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		x.setLabel("Data");

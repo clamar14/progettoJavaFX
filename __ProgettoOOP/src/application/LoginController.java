@@ -8,7 +8,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-
+/**
+ * Classe che permette di controllare l'iterfaccia di login
+ *
+ */
 public class LoginController {
 	@FXML
     private PasswordField password;
@@ -28,6 +31,10 @@ public class LoginController {
     @FXML
     private Label messaggio;
 
+    /**
+     * Metodo che viene invocato ogni volta che viene eseguito un login da un utente 
+     * @param e
+     */
     @FXML
     void login(ActionEvent e) {
 		try {
@@ -54,6 +61,10 @@ public class LoginController {
 	}
     
 
+    /**
+     * Metodo che viene invocato ogni volta che un utente deve eseguire la sua registrazione 
+     * @param event
+     */
     @FXML
     void registrazione(ActionEvent event) {
     	try {
@@ -66,6 +77,10 @@ public class LoginController {
 		}
     }
     
+    /**
+     * Metodo che viene invocato
+     * @param event
+     */
     @FXML
     void admin(ActionEvent event) {
     	try {

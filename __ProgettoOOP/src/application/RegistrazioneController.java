@@ -9,6 +9,10 @@ import javafx.fxml.*;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 
+/** 
+ * Classe che permette di controllare l'interfaccia in cui avviene la registrazione dell'utente
+ *
+ */
 public class RegistrazioneController implements Initializable  {
     @FXML
 	private TextField nome;
@@ -43,6 +47,10 @@ public class RegistrazioneController implements Initializable  {
     @FXML
     private Label messaggio;
     
+    /**
+     * Metodo invocato ogni volta che viene aperta la pagina della registrazione
+     *  che inizializza i campi della combobox
+     */
     @Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		int i;
@@ -60,6 +68,11 @@ public class RegistrazioneController implements Initializable  {
 		attività.getItems().addAll("Leggera", "Moderata", "Pesante");
 	}
 
+    /** 
+     * Metodo che viene utilizzato ogni volta che viene fatta la registrazione di un utente
+     *  in cui si visualizzano gli errori se un utente sbaglia a inserire un dato
+     * @param event
+     */
     @FXML
     void registrazione(ActionEvent event) {
 		boolean cont = true;
@@ -96,6 +109,10 @@ public class RegistrazioneController implements Initializable  {
 		messaggio.setVisible(true);
     }
     
+    /**
+     * Metodo che permette di andare dall'interfaccia della registrazione all'interfaccia di login
+     * @param event
+     */
     @FXML
     void indietro(ActionEvent event) {
     	try {

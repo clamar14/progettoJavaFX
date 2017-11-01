@@ -14,6 +14,10 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
+/**
+ * Classe che permette di controllare l'interfaccia amministratore
+ *
+ */
 public class AdminPageController {
 	final static String code = "aw1t56Y%";
     
@@ -80,6 +84,11 @@ public class AdminPageController {
     @FXML
     private Label messaggio;
 
+    /**
+     * Metodo che viene invocato ogni volta che l'amministratore vuole inserire un alimento
+     * e apre un pannello per consentirne l'inserimento
+     * @param event
+     */
     @FXML
     void addFood(ActionEvent event) {
     	visibleActionPane();
@@ -88,6 +97,11 @@ public class AdminPageController {
     	field2.setDisable(false);
     }
 
+    /**
+     * Metodo che viene invocato ogni volta che l'amministratore vuole inserire uno sport
+     * e apre un pannello per consentirne l'inserimento
+     * @param event
+     */
     @FXML
     void addSport(ActionEvent event) {
     	visibleActionPane();
@@ -96,6 +110,10 @@ public class AdminPageController {
     	field2.setDisable(false);
     }
 
+    /**
+     * Metodo che permette di tornare dall'interfaccia amministratore all'interfaccia di login
+     * @param event
+     */
     @FXML
     void indietro(ActionEvent event) {
     	try {
@@ -108,6 +126,11 @@ public class AdminPageController {
 		}
     }
 
+    /**
+     * Metodo che viene invocato ogni volta che l'amministratore vuole eliminare un alimento
+     * e apre un pannello per consentirne la rimozione
+     * @param event
+     */
     @FXML
     void deleteFood(ActionEvent event) {
     	visibleActionPane();
@@ -116,6 +139,11 @@ public class AdminPageController {
     	field2.setDisable(true);
     }
 
+    /**
+     * Metodo che viene invocato ogni volta che l'amministratore vuole eliminare uno sport
+     * e apre un pannello per consentirne la rimozione
+     * @param event
+     */
     @FXML
     void deleteSport(ActionEvent event) {
     	visibleActionPane();
@@ -124,12 +152,21 @@ public class AdminPageController {
     	field2.setDisable(true);
     }
 
+    /**
+     * Metodo che viene invocato quando l'amministratore vuole accedere all'area riservata
+     *  e serve per verificare la password
+     * @param event
+     */
     @FXML
     void inserisci(ActionEvent event) {
     	if(codice.getText().equals(code))
     		adminPane.setVisible(true);
     }
 
+    /**
+     * Metodo che viene invocato ogni volta che l'amministratore vuole ricercare un alimento all'interno del database
+     * @param event
+     */
     @FXML
     void searchFood(ActionEvent event) {
     	visibleActionPane();
@@ -138,6 +175,10 @@ public class AdminPageController {
     	field2.setDisable(false);
     }
 
+    /**
+     * Metodo che viene invocato ogni volta che l'amministratore vuole ricercare uno sport all'interno del database
+     * @param event
+     */
     @FXML
     void searchSport(ActionEvent event) {
     	visibleActionPane();
@@ -161,6 +202,11 @@ public class AdminPageController {
     	descrizione2.setText("Calorie per ora");
     }
     
+    /**
+     * Metodo che permette di interagire con il database a seconda dell'azione
+     * che l'amministratore ha precedentemente settato
+     * @param event
+     */
     @FXML
     void esegui(ActionEvent event) {
     	searchScrollPane.setVisible(false);
