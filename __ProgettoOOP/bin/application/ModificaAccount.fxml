@@ -4,7 +4,6 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToolBar?>
@@ -18,18 +17,18 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane prefHeight="475.0" prefWidth="665.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.RegistrazioneController">
+<ScrollPane prefHeight="475.0" prefWidth="665.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
    <content>
       <AnchorPane prefHeight="463.0" prefWidth="701.0" style="-fx-background-image: url(&quot;https://ak8.picdn.net/shutterstock/videos/905008/thumb/1.jpg&quot;); -fx-background-repeat: no-repeat;">
          <children>
             <AnchorPane layoutX="182.0" layoutY="65.0" prefHeight="327.0" prefWidth="291.0" style="-fx-background-color: #002147;" AnchorPane.leftAnchor="182.0" AnchorPane.rightAnchor="228.0">
                <children>
-                  <GridPane AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                    <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="193.0" minWidth="10.0" prefWidth="177.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="140.0" minWidth="10.0" prefWidth="114.0" />
-                    </columnConstraints>
-                    <rowConstraints>
+                  <GridPane layoutY="1.0" prefHeight="296.0" prefWidth="291.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="1.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="193.0" minWidth="10.0" prefWidth="177.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="140.0" minWidth="10.0" prefWidth="114.0" />
+                     </columnConstraints>
+                     <rowConstraints>
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -37,9 +36,7 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
+                     </rowConstraints>
                      <children>
                         <Label alignment="CENTER" prefHeight="14.0" prefWidth="198.0" text="Nome" textFill="#9d4040">
                            <font>
@@ -51,37 +48,27 @@
                               <Font name="AR DESTINE" size="12.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="211.0" text="*Username" textFill="#9d4040" GridPane.rowIndex="2">
+                        <Label alignment="TOP_CENTER" prefHeight="17.0" prefWidth="172.0" text="Sesso" textFill="#9d4040" GridPane.rowIndex="2">
                            <font>
                               <Font name="AR DESTINE" size="12.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="196.0" text="*Password" textFill="#9d4040" GridPane.rowIndex="3">
+                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="178.0" text="Data di nascita (dd/mm/yyyy)" textFill="#9d4040" GridPane.rowIndex="3">
                            <font>
                               <Font name="AR DESTINE" size="12.0" />
                            </font>
                         </Label>
-                        <Label alignment="TOP_CENTER" prefHeight="17.0" prefWidth="172.0" text="*Sesso" textFill="#9d4040" GridPane.rowIndex="4">
+                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="191.0" text="Altezza (cm)" textFill="#9d4040" GridPane.rowIndex="4">
                            <font>
                               <Font name="AR DESTINE" size="12.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="178.0" text="*Data di nascita (dd/mm/yyyy)" textFill="#9d4040" GridPane.rowIndex="5">
+                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="194.0" text="Peso (kg)" textFill="#9d4040" GridPane.rowIndex="5">
                            <font>
                               <Font name="AR DESTINE" size="12.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="191.0" text="*Altezza (cm)" textFill="#9d4040" GridPane.rowIndex="6">
-                           <font>
-                              <Font name="AR DESTINE" size="12.0" />
-                           </font>
-                        </Label>
-                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="194.0" text="*Peso (kg)" textFill="#9d4040" GridPane.rowIndex="7">
-                           <font>
-                              <Font name="AR DESTINE" size="12.0" />
-                           </font>
-                        </Label>
-                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="190.0" text="*Livello di attività" textFill="#9d4040" GridPane.rowIndex="8">
+                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="190.0" text="Livello di attività" textFill="#9d4040" GridPane.rowIndex="6">
                            <font>
                               <Font name="AR DESTINE" size="12.0" />
                            </font>
@@ -110,31 +97,7 @@
                               </Lighting>
                            </effect>
                         </TextField>
-                        <TextField fx:id="userName" prefHeight="25.0" prefWidth="91.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                           <effect>
-                              <Lighting>
-                                 <bumpInput>
-                                    <Shadow />
-                                 </bumpInput>
-                                 <light>
-                                    <Light.Distant />
-                                 </light>
-                              </Lighting>
-                           </effect>
-                        </TextField>
-                        <PasswordField fx:id="password" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                           <effect>
-                              <Lighting>
-                                 <bumpInput>
-                                    <Shadow />
-                                 </bumpInput>
-                                 <light>
-                                    <Light.Distant />
-                                 </light>
-                              </Lighting>
-                           </effect>
-                        </PasswordField>
-                        <ComboBox fx:id="sesso" prefWidth="150.0" promptText="Seleziona..." GridPane.columnIndex="1" GridPane.rowIndex="4">
+                        <ComboBox fx:id="sesso" prefWidth="150.0" promptText="Seleziona..." GridPane.columnIndex="1" GridPane.rowIndex="2">
                            <effect>
                               <Lighting>
                                  <bumpInput>
@@ -146,7 +109,7 @@
                               </Lighting>
                            </effect>
                         </ComboBox>
-                        <DatePicker fx:id="data" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                        <DatePicker fx:id="data" GridPane.columnIndex="1" GridPane.rowIndex="3">
                            <effect>
                               <Lighting>
                                  <bumpInput>
@@ -158,7 +121,7 @@
                               </Lighting>
                            </effect>
                         </DatePicker>
-                        <ComboBox fx:id="altezza" prefWidth="150.0" promptText="Seleziona..." GridPane.columnIndex="1" GridPane.rowIndex="6">
+                        <ComboBox fx:id="altezza" prefWidth="150.0" promptText="Seleziona..." GridPane.columnIndex="1" GridPane.rowIndex="4">
                            <effect>
                               <Lighting>
                                  <bumpInput>
@@ -170,7 +133,7 @@
                               </Lighting>
                            </effect>
                         </ComboBox>
-                        <ComboBox fx:id="peso" prefWidth="150.0" promptText="Seleziona..." GridPane.columnIndex="1" GridPane.rowIndex="7">
+                        <ComboBox fx:id="peso" prefWidth="150.0" promptText="Seleziona..." GridPane.columnIndex="1" GridPane.rowIndex="5">
                            <effect>
                               <Lighting>
                                  <bumpInput>
@@ -182,7 +145,7 @@
                               </Lighting>
                            </effect>
                         </ComboBox>
-                        <ComboBox fx:id="attività" prefWidth="150.0" promptText="Seleziona..." GridPane.columnIndex="1" GridPane.rowIndex="8">
+                        <ComboBox fx:id="attività" prefWidth="150.0" promptText="Seleziona..." GridPane.columnIndex="1" GridPane.rowIndex="6">
                            <effect>
                               <Lighting>
                                  <bumpInput>
@@ -196,7 +159,7 @@
                         </ComboBox>
                      </children>
                   </GridPane>
-                  <Button fx:id="registrazione" layoutX="110.0" layoutY="302.0" mnemonicParsing="false" onAction="#registrazione" style="-fx-background-color: #9d4040;" text="Registrati" textFill="#002147" AnchorPane.leftAnchor="110.0" AnchorPane.rightAnchor="110.0">
+                  <Button fx:id="modifica" layoutX="110.0" layoutY="302.0" mnemonicParsing="false" onAction="#modifica" style="-fx-background-color: #9d4040;" text="Modifica" textFill="#002147" AnchorPane.leftAnchor="110.0" AnchorPane.rightAnchor="110.0">
                      <font>
                         <Font name="AR DESTINE" size="12.0" />
                      </font>
@@ -206,9 +169,9 @@
                   </Button>
                </children>
             </AnchorPane>
-            <ToolBar prefHeight="17.0" prefWidth="71.0" style="-fx-background-color: #9d4040;">
-              <items>
-                <Button fx:id="indietro" mnemonicParsing="false" onAction="#indietro" style="-fx-background-color: #9d4040;" text="Indietro" textFill="#002147">
+            <ToolBar prefHeight="32.0" prefWidth="91.0" style="-fx-background-color: #9d4040;">
+               <items>
+                  <Button fx:id="homepage" mnemonicParsing="false" onAction="#homepage" style="-fx-background-color: #9d4040;" text="Home Page" textFill="#002147">
                      <effect>
                         <InnerShadow />
                      </effect>
@@ -216,12 +179,12 @@
                         <Font name="AR DESTINE" size="12.0" />
                      </font>
                   </Button>
-              </items>
+               </items>
                <effect>
                   <InnerShadow />
                </effect>
             </ToolBar>
-            <Label fx:id="messaggio" alignment="CENTER" layoutX="72.0" layoutY="16.0" prefHeight="14.0" prefWidth="510.0" text="Label" textFill="#9d4040" visible="false" AnchorPane.leftAnchor="72.0" AnchorPane.rightAnchor="119.0">
+            <Label fx:id="messaggio" alignment="CENTER" layoutX="182.0" layoutY="25.0" prefHeight="14.0" prefWidth="291.0" text="Modifica effettuata con successo" textFill="#9d4040" visible="false">
                <font>
                   <Font name="AR DESTINE" size="12.0" />
                </font>
