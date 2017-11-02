@@ -1,15 +1,19 @@
-package application;
+package controller;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
 import java.util.*;
+
 import javafx.collections.*;
 import javafx.event.*;
 import javafx.fxml.*;
 import javafx.scene.*;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
+import model.Database;
+import model.Utente;
+import view.TestApp;
 
 /**
  * Classe che permette di controllare l'interfaccia del grafico
@@ -65,11 +69,11 @@ public class GraficoController implements Initializable {
 	    void homepage(ActionEvent event) {
 	    	try {
 	    		HomePageController controller = new HomePageController(user);
-				FXMLLoader loader = new FXMLLoader(Main.class.getResource("HomePage.fxml"));
+				FXMLLoader loader = new FXMLLoader(TestApp.class.getResource("HomePage.fxml"));
 				loader.setController(controller);
 				ScrollPane registrazione = (ScrollPane) loader.load();
 				Scene scene = new Scene(registrazione);
-				Main.getStage().setScene(scene);
+				TestApp.getStage().setScene(scene);
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
@@ -83,8 +87,10 @@ public class GraficoController implements Initializable {
 			fabbisogno.setText(fabbisogno.getText()+" "+user.getFabbisogno()+" kcal");
 			ResultSet rs = Database.query("SELECT data FROM Diario WHERE username='"+user.getUserName()+"'");
 			try {
-				while(rs.next()){
-						data.getItems().add(rs.getString("data"));
+				while(rs.next()){		
+					String date = rs.getString("data");
+					String d = date.substring(8, 10)+"/"+date.substring(5, 7)+"/"+date.substring(0, 4);
+					data.getItems().add(d);
 				}
 			} catch (SQLException e) {
 					e.printStackTrace();
@@ -99,7 +105,9 @@ public class GraficoController implements Initializable {
 		private ObservableList<PieChart.Data> creaDataSet(){
 			pieChart.setAnimated(true);
 			ObservableList<PieChart.Data> dataset = FXCollections.observableArrayList();
-			ResultSet rs = Database.query("SELECT * FROM Diario WHERE username='"+user.getUserName()+"' AND data='"+data.getValue()+"'");
+			String date = data.getValue();
+			String d = date.substring(6, 10)+"/"+date.substring(3, 5)+"/"+date.substring(0, 2);
+			ResultSet rs = Database.query("SELECT * FROM Diario WHERE username='"+user.getUserName()+"' AND data='"+d+"'");
 			try {
 				if(rs.next()){
 					if(rs.getInt("kcal_colazione")!=0)

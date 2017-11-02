@@ -1,4 +1,4 @@
-package application;
+package controller;
 
 import java.io.IOException;
 import java.net.URL;
@@ -15,6 +15,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import model.Database;
+import model.Utente;
+import view.TestApp;
 
 /**
  * Classe che permette di controllare l'interfaccia in cui si può effettuare
@@ -66,11 +69,11 @@ public class ModificaAccountController implements Initializable {
     void homepage(ActionEvent event) {
     	try {
     		HomePageController controller = new HomePageController(user);
-			FXMLLoader loader = new FXMLLoader(Main.class.getResource("HomePage.fxml"));
+			FXMLLoader loader = new FXMLLoader(TestApp.class.getResource("HomePage.fxml"));
 			loader.setController(controller);
 			ScrollPane homepage = (ScrollPane) loader.load();
 			Scene scene = new Scene(homepage);
-			Main.getStage().setScene(scene);
+			TestApp.getStage().setScene(scene);
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}

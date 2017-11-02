@@ -1,4 +1,4 @@
-package application;
+package model;
 
 import java.sql.*;
 import java.text.DateFormat;

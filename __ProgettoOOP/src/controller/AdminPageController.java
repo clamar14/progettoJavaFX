@@ -1,4 +1,4 @@
-package application;
+package controller;
 
 import java.io.IOException;
 import java.sql.ResultSet;
@@ -13,6 +13,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import model.Database;
+import view.TestApp;
 
 /**
  * Classe che permette di controllare l'interfaccia amministratore
@@ -117,10 +119,10 @@ public class AdminPageController {
     @FXML
     void indietro(ActionEvent event) {
     	try {
-			FXMLLoader loader = new FXMLLoader(Main.class.getResource("Login.fxml"));
+			FXMLLoader loader = new FXMLLoader(TestApp.class.getResource("Login.fxml"));
 			ScrollPane login = (ScrollPane) loader.load();
 			Scene scene = new Scene(login);
-			Main.getStage().setScene(scene);
+			TestApp.getStage().setScene(scene);
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}

@@ -1,4 +1,4 @@
-package application;
+package controller;
 
 import java.io.IOException;
 import java.net.URL;
@@ -12,6 +12,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import model.Utente;
+import view.TestApp;
 
 /**
  * Classe che permette di controllare l'interfaccia dell'homepage
@@ -65,11 +67,11 @@ public class HomePageController implements Initializable {
     void aggiornaDiario(ActionEvent event) {
     	try {
     		DiarioController controller = new DiarioController(user);
-			FXMLLoader loader = new FXMLLoader(Main.class.getResource("Diario.fxml"));
+			FXMLLoader loader = new FXMLLoader(TestApp.class.getResource("Diario.fxml"));
 			loader.setController(controller);
 			ScrollPane diario = (ScrollPane) loader.load();
 			Scene scene = new Scene(diario);
-			Main.getStage().setScene(scene);
+			TestApp.getStage().setScene(scene);
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
@@ -82,10 +84,10 @@ public class HomePageController implements Initializable {
     @FXML
     void logout(ActionEvent event) {
     	try {
-			FXMLLoader loader = new FXMLLoader(Main.class.getResource("Login.fxml"));
+			FXMLLoader loader = new FXMLLoader(TestApp.class.getResource("Login.fxml"));
 			ScrollPane login = (ScrollPane) loader.load();
 			Scene scene = new Scene(login);
-			Main.getStage().setScene(scene);
+			TestApp.getStage().setScene(scene);
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
@@ -99,11 +101,11 @@ public class HomePageController implements Initializable {
     void visualizzaTendenza(ActionEvent event) {
     	try {
     		TrendController controller = new TrendController(user);
-    		FXMLLoader loader = new FXMLLoader(Main.class.getResource("Trend.fxml"));
+    		FXMLLoader loader = new FXMLLoader(TestApp.class.getResource("Trend.fxml"));
 			loader.setController(controller);
 			ScrollPane modifica = (ScrollPane) loader.load();
 			Scene scene = new Scene(modifica);
-			Main.getStage().setScene(scene);
+			TestApp.getStage().setScene(scene);
     	} catch (IOException e1) {
 			e1.printStackTrace();
 		}
@@ -117,11 +119,11 @@ public class HomePageController implements Initializable {
     void modificaProfilo(ActionEvent event) {
     	try {
     		ModificaAccountController controller = new ModificaAccountController(user);
-			FXMLLoader loader = new FXMLLoader(Main.class.getResource("ModificaAccount.fxml"));
+			FXMLLoader loader = new FXMLLoader(TestApp.class.getResource("ModificaAccount.fxml"));
 			loader.setController(controller);
 			ScrollPane modifica = (ScrollPane) loader.load();
 			Scene scene = new Scene(modifica);
-			Main.getStage().setScene(scene);
+			TestApp.getStage().setScene(scene);
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
@@ -135,11 +137,11 @@ public class HomePageController implements Initializable {
     void visualizzaDiario(ActionEvent event) {
     	try {
     		GraficoController controller = new GraficoController(user);
-			FXMLLoader loader = new FXMLLoader(Main.class.getResource("Grafico.fxml"));
+			FXMLLoader loader = new FXMLLoader(TestApp.class.getResource("Grafico.fxml"));
 			loader.setController(controller);
 			ScrollPane diario = (ScrollPane) loader.load();
 			Scene scene = new Scene(diario);
-			Main.getStage().setScene(scene);
+			TestApp.getStage().setScene(scene);
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}

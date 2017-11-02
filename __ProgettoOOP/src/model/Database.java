@@ -1,4 +1,4 @@
-package application;
+package model;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -60,6 +60,8 @@ public class Database {
 	
 	/**
 	 * Metodo per interagire con il DB ed eseguire delle query
+	 * @param qry
+	 * @return ResultSet
 	 */
 	public static ResultSet query(String qry){
 		ResultSet rs = null;
@@ -74,13 +76,14 @@ public class Database {
 	}
 	/**
 	 * Metodo per interagire con il DB ed eseguire delle operazioni di INSERT, UPDATE or DELETE
+	 * @param qry
 	 */
 	public static void update(String qry){
 		try {
 			st.executeUpdate(qry);
 		}
 		catch (SQLException e){
-			System.out.println("Errore nell'interazione con il DB (upate)");	
+			System.out.println("Errore nell'interazione con il DB (update)");	
 		}
 			
 	}
@@ -88,13 +91,21 @@ public class Database {
 	/**
 	 * Metodo con cui si chiude la connessione al database
 	 */
-	public void closeConnection() {
-		if (con != null)
+	public static void closeConnection() {
+		if (st != null){
+			try {
+				st.close();
+			} catch (SQLException e) {
+				System.out.println("Errore nella chiusura dello statement");
+			}
+		}
+		if (con != null){
 			try {
 				con.close();
 			} catch (SQLException e) {
 				System.out.println("Errore nella chiusura della connessione ad DB");
 			}
+		}
 	}
 
 

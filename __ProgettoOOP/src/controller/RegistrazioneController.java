@@ -1,4 +1,4 @@
-package application;
+package controller;
 
 import java.io.IOException;
 import java.net.URL;
@@ -8,6 +8,8 @@ import javafx.event.*;
 import javafx.fxml.*;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import model.Database;
+import view.TestApp;
 
 /** 
  * Classe che permette di controllare l'interfaccia in cui avviene la registrazione dell'utente
@@ -116,10 +118,10 @@ public class RegistrazioneController implements Initializable  {
     @FXML
     void indietro(ActionEvent event) {
     	try {
-			FXMLLoader loader = new FXMLLoader(Main.class.getResource("Login.fxml"));
+			FXMLLoader loader = new FXMLLoader(TestApp.class.getResource("Login.fxml"));
 			ScrollPane login = (ScrollPane) loader.load();
 			Scene scene = new Scene(login);
-			Main.getStage().setScene(scene);
+			TestApp.getStage().setScene(scene);
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}

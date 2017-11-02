@@ -1,4 +1,4 @@
-package application;
+package controller;
 
 import java.io.IOException;
 import java.net.URL;
@@ -6,10 +6,14 @@ import java.sql.*;
 import java.text.*;
 import java.util.*;
 import java.util.Date;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.*;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import model.Database;
+import model.Utente;
+import view.TestApp;
 
 /**
  * Classe che permette di controllare l'interfaccia diario
@@ -17,6 +21,10 @@ import javafx.scene.control.*;
  */
 public class DiarioController implements Initializable {
 	private Utente user;
+	
+	private boolean diarioRegistrato;
+	
+	private String day;
 	
 	@FXML
     private Button homepage;
@@ -81,8 +89,6 @@ public class DiarioController implements Initializable {
     @FXML
     private Label messaggio2;
     
-    private String day;
-
     public DiarioController(Utente user){
     	this.user=user;
     }
@@ -158,21 +164,29 @@ public class DiarioController implements Initializable {
      */
     @FXML
     void homepage(ActionEvent event) {
-    	Database.update("UPDATE Diario "
+    	if(!diarioRegistrato){
+    		if(Integer.parseInt(totale.getText())!=0 || Integer.parseInt(kcalConsumate.getText())!=0){
+    			Database.update("INSERT INTO Diario (username, data) VALUES ('"+user.getUserName()+"','"+day+"')");
+    			diarioRegistrato=true;
+    		}
+    	}
+    	if(diarioRegistrato)
+    		Database.update("UPDATE Diario "
 				+"SET kcal_colazione='"+kcalColazione.getText()
 				+"', kcal_pranzo='"+kcalPranzo.getText()
 				+"', kcal_cena='"+kcalCena.getText()
 				+"', kcal_snack='"+kcalSnack.getText()
 				+"', kcal_sport='"+kcalConsumate.getText()
 				+"', fabbisogno='"+user.getFabbisogno()
-				+"' WHERE username='"+user.getUserName()+"' AND data='"+day+"'");
+				+"' WHERE username='"+user.getUserName()+"' AND data='"+day+"'");    	
+    	
     	try {
-    		HomePageController controller = new HomePageController(user);
-			FXMLLoader loader = new FXMLLoader(Main.class.getResource("HomePage.fxml"));
+       		HomePageController controller = new HomePageController(user);
+			FXMLLoader loader = new FXMLLoader(TestApp.class.getResource("HomePage.fxml"));
 			loader.setController(controller);
 			ScrollPane registrazione = (ScrollPane) loader.load();
 			Scene scene = new Scene(registrazione);
-			Main.getStage().setScene(scene);
+			TestApp.getStage().setScene(scene);
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
@@ -240,13 +254,15 @@ public class DiarioController implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		Date dt=new Date();
-		DateFormat dateFormat=new SimpleDateFormat("dd/MM/yyyy");
+		DateFormat dateFormat=new SimpleDateFormat("yyyy/MM/dd");
 		day = dateFormat.format(dt);
+		diarioRegistrato=false;
 		
 		fabbisogno.setText(String.valueOf(user.getFabbisogno()));
 		ResultSet rs = Database.query("SELECT * FROM Diario WHERE username='"+user.getUserName()+"'AND data='"+day+"'");
 		try {
 			if(rs.next()){
+					diarioRegistrato=true;
 					kcalColazione.setText(String.valueOf(rs.getInt("kcal_colazione")));
 					kcalPranzo.setText(String.valueOf(rs.getInt("kcal_pranzo")));
 					kcalCena.setText(String.valueOf(rs.getInt("kcal_cena")));
@@ -255,15 +271,9 @@ public class DiarioController implements Initializable {
 					int sum=Integer.parseInt(kcalColazione.getText())+Integer.parseInt(kcalPranzo.getText())+Integer.parseInt(kcalCena.getText())+Integer.parseInt(kcalSnack.getText());
 					totale.setText(String.valueOf(sum));
 			}
-			else{
-				Database.update("INSERT INTO Diario (username, data) VALUES ('"+user.getUserName()+"','"+day+"')");
-			}
 		}  catch (SQLException e) {
 			e.printStackTrace();
 		}
 		controlla();
 	}
-    
-    
-    
 }
